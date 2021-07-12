@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BlueByte.SOLIDWORKS.PDMProfessional.PDMAddInFramework, Version=2021.1.30.0, Culture=neutral, PublicKeyToken=9de23b35f97b88b8, processorArchitecture=MSIL">
-      <HintPath>..\packages\BlueByte.SOLIDWORKS.PDMProfessional.PDMAddInFramework.2021.1.30\lib\net472\BlueByte.SOLIDWORKS.PDMProfessional.PDMAddInFramework.dll</HintPath>
-    </Reference>
     <Reference Include="EPDM.Interop.epdm, Version=5.24.0.0, Culture=neutral, PublicKeyToken=0625a0c4bb5de148, processorArchitecture=MSIL">
       <HintPath>..\packages\BlueByte.SOLIDWORKS.PDMProfessional.Interops.2021.0.0\lib\EPDM.Interop.epdm.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
