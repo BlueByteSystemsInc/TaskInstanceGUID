@@ -28,10 +28,10 @@ namespace TaskInstanceGUID
         public void OnCmd(ref EdmCmd poCmd, ref EdmCmdData[] ppoData)
         {
             AttachDebugger();
+            var taskProperties = (poCmd.mpoExtra as IEdmTaskProperties);
             switch (poCmd.meCmdType)
             {
                 case EdmCmdType.EdmCmd_TaskSetup:
-                    var taskProperties = (poCmd.mpoExtra as IEdmTaskProperties);
                     taskProperties.TaskFlags = (int)EdmTaskFlag.EdmTask_SupportsChangeState + (int)EdmTaskFlag.EdmTask_SupportsDetails + (int)EdmTaskFlag.EdmTask_SupportsInitExec + (int)EdmTaskFlag.EdmTask_SupportsScheduling;
 
                     var cmds = new EdmTaskMenuCmd[1] { new EdmTaskMenuCmd() };
@@ -41,9 +41,12 @@ namespace TaskInstanceGUID
                     cmds[0].mlEdmMenuFlags = (int)EdmMenuFlags.EdmMenu_Nothing;
                     taskProperties.SetMenuCmds(cmds);
 
+                    (poCmd.mpoVault as IEdmVault5).MsgBox(0, $"Add-in name:\n{taskProperties.AddInName}");
+
                     break;
 
                 case EdmCmdType.EdmCmd_TaskSetupButton:
+                    (poCmd.mpoVault as IEdmVault5).MsgBox(0, $"Add-in name:\n{taskProperties.AddInName}");
                     break;
 
                 case EdmCmdType.EdmCmd_TaskDetails:
@@ -55,6 +58,9 @@ namespace TaskInstanceGUID
                 case EdmCmdType.EdmCmd_TaskLaunch:
                     var guid2 = (poCmd.mpoExtra as IEdmTaskInstance).InstanceGUID;
                     (poCmd.mpoVault as IEdmVault5).MsgBox(0, $"Instance GUID:\n{guid2}");
+
+                    var addInName = System.IO.Path.GetFileName(this.GetType().Assembly.Location);
+                    (poCmd.mpoVault as IEdmVault5).MsgBox(0, $"Add-in name:\n{addInName}");
                     break;
 
                 case EdmCmdType.EdmCmd_TaskLaunchButton:
